@@ -106,7 +106,7 @@ exports.deleteSauce = (req, res, next) => {
 /* fonction aimer (ou pas) la sauce */
 exports.likeSauce = (req, res, next) => {
   const like = req.body.like;
-  const userID = req.body.userId;
+  const userId = req.body.userId;
 
   Sauces.findOne({ _id: req.params.id })
     .then((sauce) => {
@@ -120,25 +120,25 @@ exports.likeSauce = (req, res, next) => {
       switch (like) {
         /* l'utilisateur aime la sauce */
         case 1:
-          sauceNotation.usersLiked.push(userID);
+          sauceNotation.usersLiked.push(userId);
           break;
         /* l'utilisateur change d'avis */
         case 0:
-          if (sauceNotation.usersLiked.includes(userID)) {
-            const index = sauceNotation.usersLiked.indexOf(userID);
+          if (sauceNotation.usersLiked.includes(userId)) {
+            const index = sauceNotation.usersLiked.indexOf(userId);
             sauceNotation.usersLiked.splice(index, 1);
           } else {
-            const index = sauceNotation.usersDisliked.indexOf(userID);
+            const index = sauceNotation.usersDisliked.indexOf(userId);
             sauceNotation.usersDisliked.splice(index, 1);
           }
           break;
         /* l'utilisateur n'aime pas la sauce */
         case -1:
-          sauceNotation.usersDisliked.push(userID);
+          sauceNotation.usersDisliked.push(userId);
           break;
 
         default:
-          break;
+          console.log(error);
       }
       /* le nombre de like (ou de dislike) est égal au nombre de userId dans le tableau correspondant */
       sauceNotation.likes = sauceNotation.usersLiked.length;
