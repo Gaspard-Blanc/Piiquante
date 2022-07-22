@@ -14,4 +14,4 @@ const saucesSchema = mongoose.Schema({
   usersDisliked: { type: ["String <userId>"] },
 });
 
-module.exports = mongoose.model("Sauces", saucesSchema); // 'Sauce' est-il bon?
+module.exports = mongoose.model("Sauces", saucesSchema);
