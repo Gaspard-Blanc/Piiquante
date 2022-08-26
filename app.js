@@ -7,7 +7,7 @@ const saucesRoutes = require("./routes/sauces");
 const userRoutes = require("./routes/user");
 const app = express();
 
-//app.use(helmet());
+app.use(helmet());
 dotenv.config();
 
 /*Connexion a MongoDB */
